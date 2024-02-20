@@ -255,6 +255,11 @@ open class XAxisRenderer: NSObject, AxisRenderer
         let labelAttrs: [NSAttributedString.Key : Any] = [.font: axis.labelFont,
                                                          .foregroundColor: axis.labelTextColor,
                                                          .paragraphStyle: paraStyle]
+        
+        let labelAttrsBold: [NSAttributedString.Key : Any] = [.font: UIFont(name: "AppleSDGothicNeo-Bold", size: 14.0)!,
+                                                         .foregroundColor: UIColor(named: "dark")!,
+                                                         .paragraphStyle: paraStyle]
+        var setAttributes: [NSAttributedString.Key : Any] = labelAttrs
 
         let labelRotationAngleRadians = axis.labelRotationAngle.DEG2RAD
         let isCenteringEnabled = axis.isCenterAxisLabelsEnabled
@@ -280,13 +285,18 @@ open class XAxisRenderer: NSObject, AxisRenderer
             
             let label = axis.valueFormatter?.stringForValue(axis.entries[i], axis: axis) ?? ""
             let labelns = label as NSString
+
+            print("labelHighlightPosition : \(axis.labelHighlightPosition)  entries i position : \(i)")
+            if i == axis.labelHighlightPosition {
+                setAttributes = labelAttrsBold
+            }
             
             if axis.isAvoidFirstLastClippingEnabled
             {
                 // avoid clipping of the last
                 if i == axis.entryCount - 1 && axis.entryCount > 1
                 {
-                    let width = labelns.boundingRect(with: labelMaxSize, options: .usesLineFragmentOrigin, attributes: labelAttrs, context: nil).size.width
+                    let width = labelns.boundingRect(with: labelMaxSize, options: .usesLineFragmentOrigin, attributes: setAttributes, context: nil).size.width
                     
                     if width > viewPortHandler.offsetRight * 2.0,
                         position.x + width > viewPortHandler.chartWidth
@@ -296,7 +306,7 @@ open class XAxisRenderer: NSObject, AxisRenderer
                 }
                 else if i == 0
                 { // avoid clipping of the first
-                    let width = labelns.boundingRect(with: labelMaxSize, options: .usesLineFragmentOrigin, attributes: labelAttrs, context: nil).size.width
+                    let width = labelns.boundingRect(with: labelMaxSize, options: .usesLineFragmentOrigin, attributes: setAttributes, context: nil).size.width
                     position.x += width / 2.0
                 }
             }

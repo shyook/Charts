@@ -61,6 +61,8 @@ open class XAxis: AxisBase
     /// **default**: 1.0
     @objc open var wordWrapWidthPercent: CGFloat = 1.0
     
+    @objc open var labelHighlightPosition = 0
+    
     public override init()
     {
         super.init()
