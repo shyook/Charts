@@ -286,7 +286,6 @@ open class XAxisRenderer: NSObject, AxisRenderer
             let label = axis.valueFormatter?.stringForValue(axis.entries[i], axis: axis) ?? ""
             let labelns = label as NSString
 
-            print("labelHighlightPosition : \(axis.labelHighlightPosition)  entries i position : \(i)")
             if i == axis.labelHighlightPosition {
                 setAttributes = labelAttrsBold
             }
