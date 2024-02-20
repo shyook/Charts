@@ -256,8 +256,8 @@ open class XAxisRenderer: NSObject, AxisRenderer
                                                          .foregroundColor: axis.labelTextColor,
                                                          .paragraphStyle: paraStyle]
         
-        let labelAttrsBold: [NSAttributedString.Key : Any] = [.font: UIFont(name: "AppleSDGothicNeo-Bold", size: 14.0)!,
-                                                         .foregroundColor: UIColor(named: "dark")!,
+        let labelAttrsBold: [NSAttributedString.Key : Any] = [.font: axis.labelHighlightFont,
+                                                              .foregroundColor: axis.labelHighlightTextColor,
                                                          .paragraphStyle: paraStyle]
         var setAttributes: [NSAttributedString.Key : Any] = labelAttrs
 
