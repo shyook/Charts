@@ -178,7 +178,6 @@ open class XAxisRenderer: NSObject, AxisRenderer
             else { return }
 
         let yOffset = axis.yOffset
-        print("XAxisRenderer - renderAxisLabels")
         
         switch axis.labelPosition {
         case .top:
@@ -248,7 +247,6 @@ open class XAxisRenderer: NSObject, AxisRenderer
     /// draws the x-labels on the specified y-position
     @objc open func drawLabels(context: CGContext, pos: CGFloat, anchor: CGPoint)
     {
-        print("XAxisRenderer - drawLabels")
         guard let transformer = self.transformer else { return }
         
         let paraStyle = ParagraphStyle.default.mutableCopy() as! MutableParagraphStyle
@@ -260,7 +258,7 @@ open class XAxisRenderer: NSObject, AxisRenderer
         
         let labelAttrsBold: [NSAttributedString.Key : Any] = [.font: axis.labelHighlightFont,
                                                               .foregroundColor: axis.labelHighlightTextColor,
-                                                         .paragraphStyle: paraStyle]
+                                                              .paragraphStyle: paraStyle]
         var setAttributes: [NSAttributedString.Key : Any] = labelAttrs
 
         let labelRotationAngleRadians = axis.labelRotationAngle.DEG2RAD
@@ -288,11 +286,11 @@ open class XAxisRenderer: NSObject, AxisRenderer
             let label = axis.valueFormatter?.stringForValue(axis.entries[i], axis: axis) ?? ""
             let labelns = label as NSString
 
-            print("axis.labelHighlightPosition : \(axis.labelHighlightPosition)")
             if i == axis.labelHighlightPosition {
-                print("axis.labelHighlightPosition i: \(i)")
                 setAttributes = labelAttrsBold
             }
+            
+            print("foregroundColor : \(setAttributes[NSAttributedString.Key.foregroundColor])   font : \(setAttributes[NSAttributedString.Key.font])")
             
             if axis.isAvoidFirstLastClippingEnabled
             {
@@ -306,13 +304,11 @@ open class XAxisRenderer: NSObject, AxisRenderer
                     {
                         position.x -= width / 2.0
                     }
-                    print("avoid clipping of the last")
                 }
                 else if i == 0
                 { // avoid clipping of the first
                     let width = labelns.boundingRect(with: labelMaxSize, options: .usesLineFragmentOrigin, attributes: setAttributes, context: nil).size.width
                     position.x += width / 2.0
-                    print("avoid clipping of the first")
                 }
             }
             
@@ -337,7 +333,6 @@ open class XAxisRenderer: NSObject, AxisRenderer
         anchor: CGPoint,
         angleRadians: CGFloat)
     {
-        print("drawLabel")
         context.drawMultilineText(formattedLabel,
                                   at: CGPoint(x: x, y: y),
                                   constrainedTo: size,

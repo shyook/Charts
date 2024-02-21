@@ -269,7 +269,7 @@ open class BarLineChartViewBase: ChartViewBase, BarLineScatterCandleBubbleChartD
         {
             rightYAxisRenderer.renderLimitLines(context: context)
         }
-        print("BarLineChartViewBase - draw")
+        
         xAxisRenderer.renderAxisLabels(context: context)
         leftYAxisRenderer.renderAxisLabels(context: context)
         rightYAxisRenderer.renderAxisLabels(context: context)
@@ -337,7 +337,6 @@ open class BarLineChartViewBase: ChartViewBase, BarLineScatterCandleBubbleChartD
     
     open override func notifyDataSetChanged()
     {
-        print("notifyDataSetChanged")
         renderer?.initBuffers()
         
         calcMinMax()

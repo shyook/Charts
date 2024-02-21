@@ -204,7 +204,6 @@ extension CGContext
             translateBy(x: translate.x, y: translate.y)
             rotate(by: angleRadians)
 
-            print("drawText - text : \(text)   attributes : \(attributes?.values)")
             (text as NSString).draw(at: drawOffset, withAttributes: attributes)
 
             restoreGState()
@@ -222,7 +221,6 @@ extension CGContext
             drawOffset.x += point.x
             drawOffset.y += point.y
 
-            print("drawText - text : \(text)   attributes : \(attributes?.values)")
             (text as NSString).draw(at: drawOffset, withAttributes: attributes)
         }
 
@@ -297,7 +295,7 @@ extension CGContext
     func drawMultilineText(_ text: String, at point: CGPoint, constrainedTo size: CGSize, anchor: CGPoint, angleRadians: CGFloat, attributes: [NSAttributedString.Key : Any]?)
     {
         let rect = text.boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: attributes, context: nil)
-        print("drawMultilineText  rect : \(rect)")
+        
         drawMultilineText(text, at: point, constrainedTo: size, anchor: anchor, knownTextSize: rect.size, angleRadians: angleRadians, attributes: attributes)
     }
 }
