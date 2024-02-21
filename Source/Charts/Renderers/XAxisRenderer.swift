@@ -290,6 +290,7 @@ open class XAxisRenderer: NSObject, AxisRenderer
 
             print("axis.labelHighlightPosition : \(axis.labelHighlightPosition)")
             if i == axis.labelHighlightPosition {
+                print("axis.labelHighlightPosition i: \(i)")
                 setAttributes = labelAttrsBold
             }
             
@@ -305,11 +306,13 @@ open class XAxisRenderer: NSObject, AxisRenderer
                     {
                         position.x -= width / 2.0
                     }
+                    print("avoid clipping of the last")
                 }
                 else if i == 0
                 { // avoid clipping of the first
                     let width = labelns.boundingRect(with: labelMaxSize, options: .usesLineFragmentOrigin, attributes: setAttributes, context: nil).size.width
                     position.x += width / 2.0
+                    print("avoid clipping of the first")
                 }
             }
             
@@ -334,6 +337,7 @@ open class XAxisRenderer: NSObject, AxisRenderer
         anchor: CGPoint,
         angleRadians: CGFloat)
     {
+        print("drawLabel")
         context.drawMultilineText(formattedLabel,
                                   at: CGPoint(x: x, y: y),
                                   constrainedTo: size,
