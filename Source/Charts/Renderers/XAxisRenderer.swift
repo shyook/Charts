@@ -286,11 +286,10 @@ open class XAxisRenderer: NSObject, AxisRenderer
             let label = axis.valueFormatter?.stringForValue(axis.entries[i], axis: axis) ?? ""
             let labelns = label as NSString
 
+            setAttributes = labelAttrs
             if i == axis.labelHighlightPosition {
                 setAttributes = labelAttrsBold
             }
-            
-            print("label : \(label)   foregroundColor : \(setAttributes[NSAttributedString.Key.foregroundColor])   font : \(setAttributes[NSAttributedString.Key.font])")
             
             if axis.isAvoidFirstLastClippingEnabled
             {

@@ -270,7 +270,6 @@ extension CGContext
             rotate(by: angleRadians)
 
             (text as NSString).draw(with: rect, options: .usesLineFragmentOrigin, attributes: attributes, context: nil)
-            print("drawMultilineText  text : \(text)   attributes : \(attributes?.values)")
 
             restoreGState()
         }
@@ -286,7 +285,6 @@ extension CGContext
             rect.origin.y += point.y
 
             (text as NSString).draw(with: rect, options: .usesLineFragmentOrigin, attributes: attributes, context: nil)
-            print("drawMultilineText  text : \(text)   attributes : \(attributes?.values)  key : \(attributes?.keys)")
         }
 
         NSUIGraphicsPopContext()
