@@ -290,7 +290,7 @@ open class XAxisRenderer: NSObject, AxisRenderer
                 setAttributes = labelAttrsBold
             }
             
-            print("foregroundColor : \(setAttributes[NSAttributedString.Key.foregroundColor])   font : \(setAttributes[NSAttributedString.Key.font])")
+            print("label : \(label)   foregroundColor : \(setAttributes[NSAttributedString.Key.foregroundColor])   font : \(setAttributes[NSAttributedString.Key.font])")
             
             if axis.isAvoidFirstLastClippingEnabled
             {
@@ -316,7 +316,7 @@ open class XAxisRenderer: NSObject, AxisRenderer
                       formattedLabel: label,
                       x: position.x,
                       y: pos,
-                      attributes: labelAttrs,
+                      attributes: setAttributes,
                       constrainedTo: labelMaxSize,
                       anchor: anchor,
                       angleRadians: labelRotationAngleRadians)
