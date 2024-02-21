@@ -178,6 +178,7 @@ open class XAxisRenderer: NSObject, AxisRenderer
             else { return }
 
         let yOffset = axis.yOffset
+        print("XAxisRenderer - renderAxisLabels")
         
         switch axis.labelPosition {
         case .top:
@@ -247,6 +248,7 @@ open class XAxisRenderer: NSObject, AxisRenderer
     /// draws the x-labels on the specified y-position
     @objc open func drawLabels(context: CGContext, pos: CGFloat, anchor: CGPoint)
     {
+        print("XAxisRenderer - drawLabels")
         guard let transformer = self.transformer else { return }
         
         let paraStyle = ParagraphStyle.default.mutableCopy() as! MutableParagraphStyle
@@ -286,6 +288,7 @@ open class XAxisRenderer: NSObject, AxisRenderer
             let label = axis.valueFormatter?.stringForValue(axis.entries[i], axis: axis) ?? ""
             let labelns = label as NSString
 
+            print("axis.labelHighlightPosition : \(axis.labelHighlightPosition)")
             if i == axis.labelHighlightPosition {
                 setAttributes = labelAttrsBold
             }
